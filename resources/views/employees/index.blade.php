@@ -1,76 +1,178 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-<style>
-    .employee-card {
-        border: none; /* Hapus border */
-        border-radius: 15px; /* Sudut melengkung */
-        overflow: hidden; /* Sembunyikan bagian yang melampaui */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek */
-        position: relative; /* Untuk posisi button unduh */
-    }
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="vendor/fontawesome-free-6.5.1-web/css/all.min.css">
+	<link rel="stylesheet" href="fonts/HelveticaNeue/HelveticaNeue.css">
+	<style>
+		* {
+			outline: solid 1px green;
+			outline: solid 1px transparent;
+		}
 
-    .employee-card img {
-        height: 200px; /* Ukuran tetap untuk gambar */
-        object-fit: cover; /* Memastikan gambar terisi penuh */
-    }
+		html {
+			height: 100%;
+		}
 
-    .employee-card:hover {
-        transform: scale(1.05); /* Membesarkan kartu saat hover */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Menambah bayangan */
-    }
+		body {
+			min-height: 100%;
+		}
 
-    .card-body {
-        background-color: #f9f9f9; /* Latar belakang kartu */
-        padding: 20px; /* Padding untuk teks */
-        border-radius: 0 0 15px 15px; /* Sudut melengkung bawah */
-    }
+		body {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: auto 1fr auto;
+			text-align: center;
+			background: #d1d2d2;
+		}
 
-    .download-btn {
-        position: absolute; /* Posisi button unduh di kanan atas */
-        top: 10px; /* Jarak dari atas */
-        right: 10px; /* Jarak dari kanan */
-        background-color: transparent; /* Transparan */
-        border: none; /* Tanpa border */
-        cursor: pointer; /* Kursor pointer */
-    }
+		.container-fluid {
+			padding: 0;
+		}
 
-    .download-btn img {
-        width: 24px; /* Ukuran logo unduh */
-        height: 24px; /* Ukuran logo unduh */
-    }
-</style>
-    <div class="row">
-        @foreach($employees as $employee)
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card employee-card">
-                    <img src="{{ asset('storage/photos/' . $employee->photo) }}" class="card-img-top" alt="{{ $employee->name }}'s photo">
-                    
-                    <!-- Button untuk mengunduh vCard -->
-                    <form action="{{ route('employees.downloadVCard', $employee->id) }}" method="GET" class="download-btn">
-                        <button type="submit" title="Download vCard">
-                            <img src="{{ asset('icons/download.svg') }}" alt="Download Icon">
-                        </button>
-                    </form>
+		@media (min-width: 768px) {
+			.container-fluid {
+				max-width: 480px;
+			}
+		}
 
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $employee->name }}</h5>
-                        <p class="card-text">{{ $employee->position }}</p>
-                        <p class="card-text">{{ $employee->phone }}</p>
-                        <p class="card-text">{{ $employee->email }}</p>
-                        <p class="card-text">{{ $employee->address }}</p>
-                        <a href="{{ url('/v/' . $employee->name) }}" class="btn btn-primary">View Card</a>
-                        <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
-@endsection
+		.fs-sm {
+			font-size: small !important;
+		}
+
+		.fs-lg {
+			font-size: large !important;
+		}
+
+		.bg-primary {
+			background: #842c2d !important;
+		}
+
+		a {
+			color: inherit;
+		}
+
+		a:hover,
+		a.active,
+		a:focus {
+			color: #842c2d;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<div class="container-fluid d-flex flex-column row-gap-4 pt-5 bg-primary text-white">
+			<div>
+				<img src="img/logo.png" class="w-50 h-auto" alt="SDA">
+			</div>
+			<div>
+				<div class="img-wrapper ratio ratio-1x1 bg-light rounded-circle mx-auto overflow-hidden position-relative"
+					style="width: 45%;">
+					<img src="img/user.png" alt="">
+				</div>
+			</div>
+			<div>
+				<h5 class="text-capitalize fs-3">agus sudiyento</h5>
+				<p class="lh-sm">
+					PT. SDA GLOBAL<br>Managing Director
+				</p>
+			</div>
+			<div class="btn-group w-100">
+				<a href="https://beta.tokosda.com/" target="_blank"
+					class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-start-0 lh-sm py-3">
+					<i class="fas fa-globe-asia fa-lg"></i>
+					<br>
+					<small class="fs-sm">WEBSITE</small>
+				</a>
+				<a href="" target="_blank"
+					class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-end-0 lh-sm py-3">
+					<i class="fas fa-user-circle fa-lg"></i>
+					<br>
+					<small class="fs-sm">SAVE CONTACT</small>
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="h-100">
+		<div class="container-fluid bg-white h-100 p-5">
+			<ul class="list-unstyled m-0 text-start d-grid row-gap-3">
+				<li>
+					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+						<div class="mt-2 opacity-50">
+							<i class="fas fa-phone fa-lg"></i>
+						</div>
+						<div>
+							<span class="fs-lg">+62 31 546 8800</span>
+							<br><small class="fs-sm opacity-50">Office</small>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+						<div class="mt-2 opacity-50">
+							<i class="fas fa-mobile fa-lg"></i>
+						</div>
+						<div>
+							<span class="fs-lg">+62 812 9797 1221</span>
+							<br><small class="fs-sm opacity-50">Mobile</small>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+						<div class="mt-2 opacity-50">
+							<i class="fas fa-envelope fa-lg"></i>
+						</div>
+						<div>
+							<span class="fs-lg">agus@sdaglobal.co.id</span>
+							<br><small class="fs-sm opacity-50">Email</small>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+						<div class="mt-2 opacity-50">
+							<i class="fas fa-location fa-lg"></i>
+						</div>
+						<div>
+							<span class="fs-lg">
+								Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes, Surabaya
+								60186, Jawa Timur - Indonesia
+							</span>
+							<br><small class="fs-sm opacity-50">Show on map</small>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+						<div class="mt-2 opacity-50">
+							<i class="fas fa-globe-asia fa-lg"></i>
+						</div>
+						<div>
+							<span class="fs-lg">www.sdaglobal.co.id</span>
+							<br><small class="fs-sm opacity-50">Website</small>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container-fluid bg-black text-white py-3">
+			&copy;
+			<script>document.write(new Date().getFullYear())</script>,
+			SDA All Rights Reserved.
+		</div>
+	</footer>
+
+</body>
+
+</html>

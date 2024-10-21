@@ -11,6 +11,13 @@ Route::get('/', function () {
     return redirect()->route('employees.index');
 });
 
+// download .vcf
+Route::get('employee/{id}', [EmployeeController::class, 'show'])->name('employees.show');
+
+
+
+
+
 Route::resource('employees', EmployeeController::class);
 Route::get('v/{username}', [EmployeeController::class, 'show'])->name('vcard.show');
 
