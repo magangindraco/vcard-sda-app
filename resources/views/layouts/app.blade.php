@@ -4,152 +4,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard Admin - SDA Global')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>@yield('title', 'Dashboard SDA')</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
     <style>
         body {
-            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        @media (min-width: 992px) {
+            .sidebar-menu {
+                width: 250px;
+                height: 100vh;
+            }
         }
 
         /* Sidebar styling */
-        .sidebar {
-            background-color: #800020; /* Warna burgundy */
-            color: #fff;
-            height: 100vh;
-            position: fixed;
-            width: 250px;
-            transition: width 0.3s; /* Smooth transition */
-        }
-
-        .sidebar.collapsed {
-            width: 60px; /* Width when collapsed */
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .sidebar img {
-            width: 100px;
-            margin: 20px auto;
-            display: block;
-            transition: width 0.3s; /* Smooth transition for logo */
-        }
-
-        .sidebar.collapsed img {
-            width: 40px; /* Smaller logo when collapsed */
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            font-size: 16px;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: #6c757d;
-        }
-
-        /* Content styling */
-        .content {
-            margin-left: 260px;
+        .sidebar-menu {
+            background-color: #343a40;
+            color: #ffffff;
             padding: 20px;
-            transition: margin-left 0.3s; /* Smooth transition */
+            border-right: 2px solid #343a40;
+            transition: width 0.3s ease;
+            overflow: hidden;
         }
 
-        .content.collapsed {
-            margin-left: 70px; /* Adjust content margin when sidebar is collapsed */
+        .sidebar-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
         }
 
-        .header {
-            background-color: #fff;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+        .sidebar-menu a:hover {
+            background-color: #495057;
+            color: #ffffff;
+        }
+
+        .sidebar-menu i {
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .admin-text {
+            font-size: 1.5rem;
+            color: #950000;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Card for content */
+        .card {
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .header h2 {
-            margin: 0;
+        /* Button styles */
+        .btn {
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
         }
 
-        .main-content {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .btn:hover {
+            background-color: #444;
+            transform: scale(1.05);
         }
 
-        /* Toggle button styling */
-        #toggleSidebar {
-            position: absolute;
-            top: 10px; /* Adjust as necessary */
-            left: 100%; /* Position it just outside the sidebar */
-            transform: translateX(-100%); /* Shift left */
-            z-index: 1000; /* Ensure it’s on top of other elements */
-            border: none; /* Remove border */
-            background-color: #800020; /* Match sidebar color */
-            color: white; /* Text color */
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <button class="btn btn-secondary" id="toggleSidebar">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <img src="{{ asset('images/sdastore.png') }}" alt="SDA Global Logo">
-        <h2>SDA Global Admin</h2>
-        <ul>
-            <li><a href="{{ route('employees.index') }}"><i class="fas fa-users"></i> Daftar Karyawan</a></li>
-            <li><a href="{{ route('employees.create') }}"><i class="fas fa-user-plus"></i> Tambah Karyawan</a></li>
-            <li><a href="{{ url('/vcard-templates') }}"><i class="fas fa-id-card"></i> VCard Templates</a></li>
-        </ul>
+    <!-- Wrapper -->
+    <div class="wrapper">
+        <div class="row g-0">
+
+            <!-- Sidebar -->
+            <div class="col-12 col-lg-auto">
+                <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+                    <div class="offcanvas-header">
+                        <a href="#" class="navbar-brand me-3">
+                            <img src="{{ asset('images/sda.png') }}" alt="LOGO" width="130">
+                        </a>
+                        <button type="button" class="btn-close ms-auto" data-bs-toggle="offcanvas" data-bs-target="#sidebar"></button>
+                    </div>
+
+                    <span class="admin-text d-none d-lg-block">Admin SDA</span>
+
+                    <!-- Sidebar Menu -->
+                    <div class="offcanvas-body sidebar-menu">
+                        <a href="{{ route('employees.create') }}" class="d-flex align-items-center">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Tambah Kartu Nama
+                        </a>
+                        <a href="{{ route('employees.index') }}" class="d-flex align-items-center">
+                            <i class="bi bi-card-list"></i>
+                            Daftar Kartu Nama
+                        </a>
+                        <a href="https://sdaglobal.co.id" target="_blank" class="d-flex align-items-center">
+                            <i class="bi bi-info-circle-fill"></i>
+                            Informasi SDA Store
+                        </a>
+                        <hr class="text-white">
+                        <a href="http://127.0.0.1:8000/#contact" class="d-flex align-items-center">
+                            <i class="bi bi-house-door"></i>
+                            Beranda
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-gear-fill"></i>
+                            Pengaturan
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-chat-dots"></i>
+                            Pesan
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-person-circle"></i>
+                            Profil
+                        </a>
+                        <a href="http://127.0.0.1:8000/" class="d-flex align-items-center">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Sidebar -->
+
+            <!-- Main Content -->
+            <div class="col-12 col-lg" style="background-color: #ffffff;">
+                <nav class="navbar navbar-expand-lg bg-body-secondary mb-4">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a href="#" class="navbar-brand ms-auto d-none d-lg-inline">
+                            <img src="{{ asset('images/sda.png') }}" alt="LOGO" width="50">
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Content Section -->
+                <div class="container">
+                    @yield('content')
+                </div>
+            </div>
+            <!-- End Main Content -->
+        </div>
     </div>
 
-    <!-- Content -->
-    <div class="content" id="content">
-        <div class="header">
-            <h2>@yield('header', 'Dashboard')</h2>
-        </div>
-        <div class="main-content">
-            @yield('content')
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        // Toggle sidebar visibility
-        const toggleSidebar = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
-
-        toggleSidebar.addEventListener('click', function () {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed'); // Adjust content margin
-            toggleSidebar.innerHTML = sidebar.classList.contains('collapsed') ? 
-                '<i class="fas fa-chevron-right"></i>' : '<i class="fas fa-chevron-left"></i>';
-        });
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -98,8 +98,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee = Employee::findOrFail($id);
-
-        // Menyimpan foto baru jika ada
+// Menyimpan foto baru jika ada
         if ($request->hasFile('photo')) {
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

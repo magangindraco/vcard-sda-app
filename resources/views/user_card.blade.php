@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         .vcard-container {
-            max-width: 400px;
+            max-width: 450px; /* Ukuran kartu diperbesar */
             margin: 0 auto;
-            border-radius: 0;
+            border-radius: 8px; /* Sudut lebih halus */
             overflow: hidden;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -19,13 +20,13 @@
         .vcard-header {
             background-color: #800000; /* Warna maroon */
             color: white;
-            padding: 20px;
+            padding: 30px; /* Tambah padding untuk memberi ruang pada logo dan teks */
             text-align: center;
         }
 
         .vcard-header img.logo {
             display: block;
-            margin: 0 auto 10px;
+            margin: 0 auto 15px; /* Margin bawah untuk memberi ruang antara logo dan teks */
             width: 120px;
         }
 
@@ -45,13 +46,13 @@
         }
 
         .vcard-header h2 {
-            margin: 5px 0;
-            font-size: 20px; /* Ukuran font lebih besar untuk nama */
+            margin: 10px 0; /* Tambah margin atas dan bawah */
+            font-size: 22px; /* Ukuran font lebih besar untuk nama */
         }
 
         .vcard-header p {
             margin: 5px 0;
-            font-size: 14px; /* Ukuran font lebih kecil */
+            font-size: 14px; /* Ukuran font untuk jabatan */
         }
 
         .separator {
@@ -61,9 +62,9 @@
 
         .vcard-buttons {
             display: flex;
-            justify-content: center; /* Pusatkan tombol */
+            justify-content: space-around; /* Pusatkan tombol dengan jarak */
             margin-top: 10px; /* Tambah margin atas tombol */
-            padding: 0; /* Hapus padding horizontal */
+            padding: 0 10px; /* Padding horizontal */
         }
 
         .vcard-buttons a {
@@ -77,19 +78,17 @@
             display: flex; /* Untuk menyelaraskan ikon dan teks */
             flex-direction: column; /* Menempatkan ikon di atas teks */
             align-items: center; /* Untuk menyelaraskan ikon di tengah */
-            flex: 1; /* Menjaga ukuran tombol agar sama */
-            margin: 0 5px; /* Jarak antar tombol */
+            transition: background-color 0.3s; /* Efek transisi saat hover */
         }
 
-        /* Styling untuk ikon */
         .vcard-buttons i {
-            font-size: 20px; /* Ukuran ikon Bootstrap */
+            font-size: 20px; /* Ukuran ikon */
             margin-bottom: 3px; /* Jarak antara ikon dan teks */
         }
 
         .vcard-buttons a:hover {
-            background-color: #FFD700; /* Warna gold */
-            color: #800000;
+            background-color: #FFD700; /* Warna gold saat hover */
+            color: #800000; /* Warna maroon saat hover */
         }
 
         .vcard-body {
@@ -113,7 +112,6 @@
             font-size: 10px; /* Ukuran font lebih kecil */
         }
 
-        /* Styling for list items */
         .vcard-body ul {
             list-style-type: none; /* Remove bullet points */
             padding: 0; /* Remove default padding */
@@ -121,7 +119,7 @@
         }
 
         .vcard-body li {
-            margin-bottom: 10px; /* Spacing between list items */
+            margin-bottom: 15px; /* Spacing between list items */
             display: flex; /* Align items horizontally */
             align-items: center; /* Center align vertically */
         }
@@ -129,16 +127,15 @@
         .vcard-body a {
             text-decoration: none; /* Remove underline */
             color: black; /* Default color */
+            transition: color 0.3s; /* Transisi untuk warna */
         }
 
-        .button-separator {
-            border-left: 1px solid white; /* Garis pemisah putih antara tombol */
-            height: 40px; /* Atur tinggi sesuai dengan tombol */
-            margin: 0 10px; /* Memberi jarak di kiri dan kanan */
+        .vcard-body a:hover {
+            color: #800000; /* Warna maroon saat hover */
         }
-
     </style>
 </head>
+
 <body>
     <div class="vcard-container">
         <div class="vcard-header">
@@ -155,12 +152,11 @@
                     <i class="fas fa-globe-asia fa-lg"></i>
                     Website
                 </a>
-                <div class="button-separator"></div>
                 <a href="{{ asset('storage/' . $employee->vcf_file) }}" download>
                     <i class="fas fa-user-circle fa-lg"></i>
                     Save Contact
                 </a>
-            </div>                       
+            </div>
         </div>
 
         <div class="vcard-body">
@@ -196,4 +192,5 @@
         </div>
     </div>
 </body>
+
 </html>

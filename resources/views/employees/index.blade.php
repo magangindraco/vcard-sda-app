@@ -1,76 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-<style>
-    .employee-card {
-        border: none; /* Hapus border */
-        border-radius: 15px; /* Sudut melengkung */
-        overflow: hidden; /* Sembunyikan bagian yang melampaui */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek */
-        position: relative; /* Untuk posisi button unduh */
-    }
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 gx-3 row-gap-3">
+    <!-- Ndek kene iki gawe cards section / daftar e kuyy horras -->
+    @foreach($employees as $employee)
+    <div class="col">
+        <div class="card h-100 text-center shadow-sm card-3d">
+            <!-- ndek kene aku pgn manggil foto profil sing di lebokno -->
+            <img src="{{ asset('storage/photos/' . $employee->photo) }}" alt="{{ $employee->name }}" class="card-img-top img-fluid rounded-circle mt-3" style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto;">
+            <!-- Lah ndek kene iki di isi karo konten sembuarang, gawe ajaran kotak sik ae ben ga bingung -->
+            <div class="card-body">
+                <h5 class="card-title">{{ $employee->name }}</h5>
+                <p class="card-text text-muted">{{ $employee->position }}</p>
+                <p class="card-text text-muted">{{ $employee->phone }}</p>
+                <p class="card-text text-muted">{{ $employee->email }}</p>
 
-    .employee-card img {
-        height: 200px; /* Ukuran tetap untuk gambar */
-        object-fit: cover; /* Memastikan gambar terisi penuh */
-    }
-
-    .employee-card:hover {
-        transform: scale(1.05); /* Membesarkan kartu saat hover */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Menambah bayangan */
-    }
-
-    .card-body {
-        background-color: #f9f9f9; /* Latar belakang kartu */
-        padding: 20px; /* Padding untuk teks */
-        border-radius: 0 0 15px 15px; /* Sudut melengkung bawah */
-    }
-
-    .download-btn {
-        position: absolute; /* Posisi button unduh di kanan atas */
-        top: 10px; /* Jarak dari atas */
-        right: 10px; /* Jarak dari kanan */
-        background-color: transparent; /* Transparan */
-        border: none; /* Tanpa border */
-        cursor: pointer; /* Kursor pointer */
-    }
-
-    .download-btn img {
-        width: 24px; /* Ukuran logo unduh */
-        height: 24px; /* Ukuran logo unduh */
-    }
-</style>
-    <div class="row">
-        @foreach($employees as $employee)
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card employee-card">
-                    <img src="{{ asset('storage/photos/' . $employee->photo) }}" class="card-img-top" alt="{{ $employee->name }}'s photo">
-                    
-                    <!-- Button untuk mengunduh vCard -->
-                    <form action="{{ route('employees.downloadVCard', $employee->id) }}" method="GET" class="download-btn">
-                        <button type="submit" title="Download vCard">
-                            <img src="{{ asset('icons/download.svg') }}" alt="Download Icon">
+                <!-- Tombol Aksi iki gawe menembak di mau di bawa kemana hubungan kitaa uhuy-->
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="{{ url('/v/' . $employee->name) }}" class="btn btn-primary me-2">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                    <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning me-2">
+                        <i class="bi bi-pencil-fill"></i> Edit
+                    </a>
+                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">
+                            <i class="bi bi-trash-fill"></i> Dell
                         </button>
                     </form>
-
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $employee->name }}</h5>
-                        <p class="card-text">{{ $employee->position }}</p>
-                        <p class="card-text">{{ $employee->phone }}</p>
-                        <p class="card-text">{{ $employee->email }}</p>
-                        <p class="card-text">{{ $employee->address }}</p>
-                        <a href="{{ url('/v/' . $employee->name) }}" class="btn btn-primary">View Card</a>
-                        <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Delete</button>
-                        </form>
-                    </div>
                 </div>
             </div>
-        @endforeach
+        </div>
     </div>
+    @endforeach
 </div>
 @endsection

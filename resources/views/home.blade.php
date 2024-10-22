@@ -226,10 +226,59 @@
             color: #666; /* Gray text color */
         }
 
+        #login {
+            background-color: #f9f9f9; /* Warna latar belakang login */
+            padding: 50px 0;
+        }
+
+        #login .card {
+            border: none;
+            border-radius: 8px;
+        }
+
+        #login .btn-custom {
+            background-color: #800020; /* Tombol login menggunakan warna burgundy */
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #login .btn-custom:hover {
+            background-color: #600000; /* Lebih gelap saat hover */
+        }
+
+
 
     </style>
 </head>
 <body>
+    <!-- Login Section Tapi ini cuma buat test saja-->
+    <section id="login" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-lg">
+                        <h3 class="text-center mb-4">Login</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                            </div>
+                            <div class="d-grid">
+                                <a href="employees" class="btn btn-custom btn-lg">Login</a>
+                            </div>
+                            <p class="mt-3 text-center">Don't have an account? <a href="#">Sign Up</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -264,8 +313,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Welcome to Our Coffee World</h1>
-            <p>Experience the finest coffee blends.</p>
+            <h1>Welcome to the World of Tools</h1>
+            <p>Discover high-quality technical tools and equipment for all your needs.</p>
             <a href="employees" class="btn btn-custom btn-lg">Masuk Halaman Admin</a>
         </div>
     </section>
@@ -273,7 +322,7 @@
     <!-- Features Section -->
     <section class="jiwa-on-air" style="padding: 40px 0;">
         <div class="container">
-            <h2 class="text-center mb-4">Jiwa Group On The Air</h2>
+            <h2 class="text-center mb-4">Explore Our Tools</h2>
             <div class="row">
                 <div class="col-md-3">
                     <div class="video-thumbnail position-relative">
@@ -282,8 +331,8 @@
                             <img src="{{ asset('images/play-button.png') }}" alt="Play Button">
                         </a>
                     </div>
-                    <h5>Centra Cup</h5>
-                    <p>Jadi kisah baru, dibingkai dalam kata membuat cerita.</p>
+                    <h5>Precision Screwdriver Set</h5>
+                    <p>Perfect for intricate tasks and precision work.</p>
                 </div>
     
                 <div class="col-md-3">
@@ -293,8 +342,8 @@
                             <img src="{{ asset('images/play-button.png') }}" alt="Play Button">
                         </a>
                     </div>
-                    <h5>Cocol Dippin' Fries</h5>
-                    <p>Cemilan terbaru yang bisa kamu coba sekarang.</p>
+                    <h5>Heavy-Duty Drill</h5>
+                    <p>Powerful and reliable for all your drilling needs.</p>
                 </div>
     
                 <div class="col-md-3">
@@ -304,8 +353,8 @@
                             <img src="{{ asset('images/play-button.png') }}" alt="Play Button">
                         </a>
                     </div>
-                    <h5>Janji Jiwa x OATSIDE</h5>
-                    <p>Rayakan hari #temansejiwa bersama menu Oatstanding.</p>
+                    <h5>Adjustable Wrench</h5>
+                    <p>Versatile tool for a variety of applications.</p>
                 </div>
     
                 <div class="col-md-3">
@@ -315,8 +364,8 @@
                             <img src="{{ asset('images/play-button.png') }}" alt="Play Button">
                         </a>
                     </div>
-                    <h5>Refresher Series</h5>
-                    <p>Kesegaran Baru untuk semua #temansejiwa!</p>
+                    <h5>Tool Organizer</h5>
+                    <p>Keep your workspace tidy and efficient.</p>
                 </div>
             </div>
         </div>
@@ -329,20 +378,20 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <div class="product-box">
-                        <h3>Arabica Coffee</h3>
-                        <p>Rich and flavorful coffee for enthusiasts.</p>
+                        <h3>High-Speed Drill</h3>
+                        <p>Efficient and reliable for various drilling tasks.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="product-box">
-                        <h3>Robusta Coffee</h3>
-                        <p>Strong and bold coffee for a perfect morning.</p>
+                        <h3>Multi-Tool Kit</h3>
+                        <p>All-in-one solution for your DIY projects.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="product-box">
-                        <h3>Espresso</h3>
-                        <p>Get your energy boost with our top espresso.</p>
+                        <h3>Laser Level</h3>
+                        <p>Achieve perfect alignment with precision measurement.</p>
                     </div>
                 </div>
             </div>
@@ -355,14 +404,14 @@
             <div class="row text-center">
                 <div class="col-md-6">
                     <div class="testimonial-box">
-                        <h3>John Doe</h3>
-                        <p>"The best coffee I've ever tasted. The quality is unmatched!"</p>
+                        <h3>Mark Anderson</h3>
+                        <p>"The tools I purchased are top-notch. They make my projects so much easier!"</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="testimonial-box">
-                        <h3>Jane Smith</h3>
-                        <p>"Their service is exceptional. The coffee is always fresh and rich in flavor!"</p>
+                        <h3>Lisa Chen</h3>
+                        <p>"Exceptional service and quality. I highly recommend their tool kits!"</p>
                     </div>
                 </div>
             </div>
@@ -375,15 +424,15 @@
             <h3 class="text-center">Gallery & Videos</h3>
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <img src="path_to_your_image.jpg" alt="Coffee Image" class="img-fluid">
-                    <div class="media-description">A beautiful cup of coffee to brighten your day.</div>
+                    <img src="path_to_your_image.jpg" alt=" Tool Image" class="img-fluid">
+                    <div class="media-description">Explore our range of high-quality tools for every project.</div>
                 </div>
                 <div class="col-md-6 text-center">
                     <video controls>
                         <source src="path_to_your_video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="media-description">Watch how our coffee is made from bean to cup.</div>
+                    <div class="media-description">Watch our tools in action and see their versatility.</div>
                 </div>
             </div>
         </div>
@@ -417,16 +466,21 @@
                     <a href="sda.co.id">
                         <img src="{{ asset('images/sda.png') }}" alt="Logo" style="height: 40px;">
                     </a>
-                    <p class="mt-2">PT Indraco Global Indonesia</p>
+                    <p class="mt-2">PT. SDA GLOBAL</p>
                     <strong>Hubungi Kami</strong>
                     <div class="contact-info mt-2">
                         <div class="d-flex align-items-center mb-2">
                             <img src="//jiwagroup.com/assets/img/mail.png" class="icon me-2">
-                            <a href="mailto:sda@indraco.com" class="link-grey">sda@indraco.com</a>
+                            <a href="mailto:cs@sdaglobal.co.id" class="link-grey">cs@sdaglobal.co.id</a>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <img src="//jiwagroup.com/assets/img/location.png" class="icon me-2">
-                            <p>Jl. Semeru Industri 1 No. 133-135, Bambe, Driyorejo, Gresik 61177 - Indonesia</p>
+                            <p>Jl. Margomulyo Indah 1A No. 7-8, Surabaya 60186, Jawa Timur - Indonesia</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="//jiwagroup.com/assets/img/location.png" class="icon me-2">
+                            <p>Komp. Raden Saleh Permai Kav. 19-20
+                                Jl. Raden Saleh No. 45, Surabaya 60174, Jawa Timur - Indonesia</p>
                         </div>
                     </div>
                     <strong>Ikuti Kami</strong>
@@ -441,12 +495,13 @@
                 </div>
     
                 <div class="col-md-4 text-center">
-                    <strong>BRAND</strong>
+                    <strong>OUR PRODUCTS</strong>
                     <ul class="list-unstyled mt-3">
-                        <li><a href="//jiwagroup.com/id/brand/detail/18/KopiSejutaJiwa">Tugu Buaya</a></li>
-                        <li><a href="//jiwagroup.com/id/brand/detail/17/BurgerGeber">Uang Emas</a></li>
-                        <li><a href="//jiwagroup.com/id/brand/detail/3/JiwaTea">Ucafe</a></li>
-                        <li><a href="//jiwagroup.com/id/brand/detail/1/JanjiJiwa">Suppreso</a></li>
+                        <li><a href="https://beta.tokosda.com/category/Hydraulic">Hydraulic Hoses, Tubings, Fittings, Adapters & Quick Couplings
+                        </a></li>
+                        <li><a href="https://beta.tokosda.com/category/PNEUMATIC">Pneumatic Products and Accessories</a></li>
+                        <li><a href="https://beta.tokosda.com/category/Industrial%20Fittings,%20Adapters,%20Clamps">Industrial Hoses and Connectors</a></li>
+                        <li><a href="https://beta.tokosda.com/category/Industrial%20Valves">Steel & Plastic Pipes, Fittings, Flanges & Valves</a></li>
                     </ul>
                 </div>
     
