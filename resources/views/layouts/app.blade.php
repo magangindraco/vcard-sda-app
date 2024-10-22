@@ -32,7 +32,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 220px; /* Adjusted width */
+            width: 220px; /* Ukuran e width */
             z-index: 1000;
             border-right: 2px solid #DEB887; /* iki broder e */
         }
@@ -47,7 +47,7 @@
             padding: 10px 15px; /* padding gawe jarak */
             display: flex;
             align-items: center;
-            border-radius: 8px; /* Make corners round */
+            border-radius: 8px; /* gawe coner sing border ben apik */
             margin-bottom: 10px; /* Decreased margin */
             transition: background-color 0.3s, transform 0.2s;
             font-weight: 450;
@@ -115,7 +115,7 @@
 
 <body>
 
-    <!-- Wrapper -->
+    <!-- Wrapper gawe pembungkus-->
     <div class="wrapper">
         <div class="row g-0">
 

@@ -9,29 +9,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .vcard-container {
-            max-width: 450px; /* Ukuran kartu diperbesar */
-            margin: 0 auto;
-            border-radius: 8px; /* Sudut lebih halus */
+            max-width: 400px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .vcard-header {
-            background-color: #800000; /* Warna maroon */
+            background-color: #800000;
             color: white;
-            padding: 30px; /* Tambah padding untuk memberi ruang pada logo dan teks */
             text-align: center;
+            padding: 20px;
         }
 
         .vcard-header img.logo {
             display: block;
-            margin: 0 auto 15px; /* Margin bawah untuk memberi ruang antara logo dan teks */
-            width: 120px;
+            margin: 0 auto 10px;
+            width: 100px;
         }
 
         .photo-container {
-            background-color: #ddd; /* Background placeholder jika tidak ada foto */
+            background-color: #ddd;
             border-radius: 50%;
             width: 120px;
             height: 120px;
@@ -46,97 +57,120 @@
         }
 
         .vcard-header h2 {
-            margin: 10px 0; /* Tambah margin atas dan bawah */
-            font-size: 22px; /* Ukuran font lebih besar untuk nama */
+            margin: 10px 0;
+            font-size: 22px;
         }
 
         .vcard-header p {
             margin: 5px 0;
-            font-size: 14px; /* Ukuran font untuk jabatan */
+            font-size: 14px;
         }
 
         .separator {
-            border-top: 1px solid white; /* Garis pemisah putih */
-            margin: 10px 0; /* Jarak di atas dan bawah */
+            border-top: 1px solid white;
+            margin: 15px 0;
         }
 
         .vcard-buttons {
             display: flex;
-            justify-content: space-around; /* Pusatkan tombol dengan jarak */
-            margin-top: 10px; /* Tambah margin atas tombol */
-            padding: 0 10px; /* Padding horizontal */
+            justify-content: space-between;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        /* Garis pemisah antara tombol */
+        .button-separator {
+            width: 1px;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .vcard-buttons a {
-            background-color: #800000; /* Warna maroon untuk tombol */
-            color: white; /* Warna teks putih */
-            padding: 10px 15px; /* Ukuran padding lebih besar */
+            background-color: #800000;
+            color: white;
+            padding: 8px;
             border-radius: 5px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 12px; /* Ukuran font lebih kecil */
-            display: flex; /* Untuk menyelaraskan ikon dan teks */
-            flex-direction: column; /* Menempatkan ikon di atas teks */
-            align-items: center; /* Untuk menyelaraskan ikon di tengah */
-            transition: background-color 0.3s; /* Efek transisi saat hover */
-        }
-
-        .vcard-buttons i {
-            font-size: 20px; /* Ukuran ikon */
-            margin-bottom: 3px; /* Jarak antara ikon dan teks */
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 45%;
+            transition: background-color 0.3s;
         }
 
         .vcard-buttons a:hover {
-            background-color: #FFD700; /* Warna gold saat hover */
-            color: #800000; /* Warna maroon saat hover */
+            background-color: #FFD700;
+            color: #800000;
+        }
+
+        .vcard-buttons i {
+            font-size: 20px;
+            margin-bottom: 5px;
         }
 
         .vcard-body {
-            background-color: white;
-            padding: 15px; /* Padding lebih kecil */
+            padding: 15px;
             color: black;
-            font-size: 12px; /* Ukuran font lebih kecil */
         }
 
-        .vcard-body .icon {
+        .vcard-body .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .vcard-body .info-item i {
+            color: #800000;
             margin-right: 10px;
-            color: #800000; /* Warna maroon untuk ikon */
-            font-size: 14px; /* Ukuran font ikon lebih kecil */
         }
 
         .vcard-footer {
-            background-color: black;
-            color: white;
+            background-color: #000;
+            color: #fff;
             text-align: center;
-            padding: 10px; /* Padding lebih besar untuk footer */
-            font-size: 10px; /* Ukuran font lebih kecil */
-        }
-
-        .vcard-body ul {
-            list-style-type: none; /* Remove bullet points */
-            padding: 0; /* Remove default padding */
-            margin: 0; /* Remove default margin */
-        }
-
-        .vcard-body li {
-            margin-bottom: 15px; /* Spacing between list items */
-            display: flex; /* Align items horizontally */
-            align-items: center; /* Center align vertically */
+            padding: 10px;
+            font-size: 12px;
         }
 
         .vcard-body a {
-            text-decoration: none; /* Remove underline */
-            color: black; /* Default color */
-            transition: color 0.3s; /* Transisi untuk warna */
+            text-decoration: none;
+            color: #800000;
         }
 
         .vcard-body a:hover {
-            color: #800000; /* Warna maroon saat hover */
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .vcard-header h2 {
+                font-size: 18px;
+            }
+
+            .vcard-buttons a {
+                padding: 6px;
+                font-size: 10px;
+            }
+
+            .vcard-buttons i {
+                font-size: 18px;
+            }
+
+            .vcard-body .info-item {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <div class="vcard-container">
         <div class="vcard-header">
             <img src="{{ asset('images/sdastore.png') }}" alt="SDA Global Logo" class="logo">
@@ -148,49 +182,49 @@
             <p>{{ $employee->position }}</p>
             <div class="separator"></div>
             <div class="vcard-buttons">
+                <!-- Garis pemisah antara tombol -->
+                <div class="button-separator"></div>
                 <a href="https://sda.co.id" target="_blank">
-                    <i class="fas fa-globe-asia fa-lg"></i>
+                    <i class="fas fa-globe-asia"></i>
                     Website
                 </a>
                 <a href="{{ asset('storage/' . $employee->vcf_file) }}" download>
-                    <i class="fas fa-user-circle fa-lg"></i>
+                    <i class="fas fa-user-circle"></i>
                     Save Contact
                 </a>
             </div>
         </div>
 
         <div class="vcard-body">
-            <ul>
-                <li>
-                    <i class="fas fa-phone icon"></i>
-                    <span>Phone: {{ $employee->phone }}</span>
-                </li>
-                <li>
-                    <i class="fas fa-envelope icon"></i>
-                    <span>Email: <a href="mailto:{{ $employee->email }}">{{ $employee->email }}</a></span>
-                </li>
-                <li>
-                    <i class="fas fa-location icon"></i>
-                    <span>
-                        <a href="#" target="_blank">
-                            Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes, Surabaya 60186, Jawa Timur - Indonesia
-                            <br><small class="fs-sm opacity-50">Show on map</small>
-                        </a>
-                    </span>
-                </li>
-                <li>
-                    <i class="fas fa-globe-asia icon"></i>
-                    <span>
-                        <a href="http://www.sdaglobal.co.id" target="_blank">www.sdaglobal.co.id</a>
-                    </span>
-                </li>
-            </ul>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>{{ $employee->phone }}</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <span><a href="mailto:{{ $employee->email }}">{{ $employee->email }}</a></span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>
+                    <a href="#" target="_blank">
+                        Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes, Surabaya 60186, Jawa Timur - Indonesia
+                    </a>
+                </span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>
+                    <a href="http://www.sdaglobal.co.id" target="_blank">www.sdaglobal.co.id</a>
+                </span>
+            </div>
         </div>
 
         <div class="vcard-footer">
-            Copyright &copy; 2024 SDA. All Rights Reserved
+            &copy; 2024 SDA. All Rights Reserved.
         </div>
     </div>
+
 </body>
 
 </html>
