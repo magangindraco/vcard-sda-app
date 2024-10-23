@@ -1,178 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="vendor/fontawesome-free-6.5.1-web/css/all.min.css">
-	<link rel="stylesheet" href="fonts/HelveticaNeue/HelveticaNeue.css">
-	<style>
-		* {
-			outline: solid 1px green;
-			outline: solid 1px transparent;
-		}
+@section('content')
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 gx-3 row-gap-3">
+    <!-- Ndek kene iki gawe cards section / daftar e kuyy horras -->
+    @foreach($employees as $employee)
+    <div class="col">
+        <div class="card h-100 text-center shadow-sm card-3d">
+            <!-- ndek kene aku pgn manggil foto profil sing di lebokno -->
+            <img src="{{ asset('storage/photos/' . $employee->photo) }}" alt="{{ $employee->name }}" class="card-img-top img-fluid rounded-circle mt-3" style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto;">
+            <!-- Lah ndek kene iki di isi karo konten sembuarang, gawe ajaran kotak sik ae ben ga bingung -->
+            <div class="card-body">
+                <h5 class="card-title">{{ $employee->name }}</h5>
+                <p class="card-text text-muted">{{ $employee->position }}</p>
+                <p class="card-text text-muted">{{ $employee->phone }}</p>
+                <p class="card-text text-muted">{{ $employee->email }}</p>
 
-		html {
-			height: 100%;
-		}
-
-		body {
-			min-height: 100%;
-		}
-
-		body {
-			display: grid;
-			grid-template-columns: 1fr;
-			grid-template-rows: auto 1fr auto;
-			text-align: center;
-			background: #d1d2d2;
-		}
-
-		.container-fluid {
-			padding: 0;
-		}
-
-		@media (min-width: 768px) {
-			.container-fluid {
-				max-width: 480px;
-			}
-		}
-
-		.fs-sm {
-			font-size: small !important;
-		}
-
-		.fs-lg {
-			font-size: large !important;
-		}
-
-		.bg-primary {
-			background: #842c2d !important;
-		}
-
-		a {
-			color: inherit;
-		}
-
-		a:hover,
-		a.active,
-		a:focus {
-			color: #842c2d;
-		}
-	</style>
-</head>
-
-<body>
-
-	<header>
-		<div class="container-fluid d-flex flex-column row-gap-4 pt-5 bg-primary text-white">
-			<div>
-				<img src="img/logo.png" class="w-50 h-auto" alt="SDA">
-			</div>
-			<div>
-				<div class="img-wrapper ratio ratio-1x1 bg-light rounded-circle mx-auto overflow-hidden position-relative"
-					style="width: 45%;">
-					<img src="img/user.png" alt="">
-				</div>
-			</div>
-			<div>
-				<h5 class="text-capitalize fs-3">agus sudiyento</h5>
-				<p class="lh-sm">
-					PT. SDA GLOBAL<br>Managing Director
-				</p>
-			</div>
-			<div class="btn-group w-100">
-				<a href="https://beta.tokosda.com/" target="_blank"
-					class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-start-0 lh-sm py-3">
-					<i class="fas fa-globe-asia fa-lg"></i>
-					<br>
-					<small class="fs-sm">WEBSITE</small>
-				</a>
-				<a href="" target="_blank"
-					class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-end-0 lh-sm py-3">
-					<i class="fas fa-user-circle fa-lg"></i>
-					<br>
-					<small class="fs-sm">SAVE CONTACT</small>
-				</a>
-			</div>
-		</div>
-	</header>
-
-	<main class="h-100">
-		<div class="container-fluid bg-white h-100 p-5">
-			<ul class="list-unstyled m-0 text-start d-grid row-gap-3">
-				<li>
-					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-						<div class="mt-2 opacity-50">
-							<i class="fas fa-phone fa-lg"></i>
-						</div>
-						<div>
-							<span class="fs-lg">+62 31 546 8800</span>
-							<br><small class="fs-sm opacity-50">Office</small>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-						<div class="mt-2 opacity-50">
-							<i class="fas fa-mobile fa-lg"></i>
-						</div>
-						<div>
-							<span class="fs-lg">+62 812 9797 1221</span>
-							<br><small class="fs-sm opacity-50">Mobile</small>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-						<div class="mt-2 opacity-50">
-							<i class="fas fa-envelope fa-lg"></i>
-						</div>
-						<div>
-							<span class="fs-lg">agus@sdaglobal.co.id</span>
-							<br><small class="fs-sm opacity-50">Email</small>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-						<div class="mt-2 opacity-50">
-							<i class="fas fa-location fa-lg"></i>
-						</div>
-						<div>
-							<span class="fs-lg">
-								Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes, Surabaya
-								60186, Jawa Timur - Indonesia
-							</span>
-							<br><small class="fs-sm opacity-50">Show on map</small>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-						<div class="mt-2 opacity-50">
-							<i class="fas fa-globe-asia fa-lg"></i>
-						</div>
-						<div>
-							<span class="fs-lg">www.sdaglobal.co.id</span>
-							<br><small class="fs-sm opacity-50">Website</small>
-						</div>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</main>
-
-	<footer>
-		<div class="container-fluid bg-black text-white py-3">
-			&copy;
-			<script>document.write(new Date().getFullYear())</script>,
-			SDA All Rights Reserved.
-		</div>
-	</footer>
-
-</body>
-
-</html>
+                <!-- Tombol Aksi iki gawe menembak di mau di bawa kemana hubungan kitaa uhuy-->
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="{{ url('/v/' . $employee->name) }}" class="btn btn-primary me-2">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                    <a href="{{ route('employees.edit', $employee->name) }}" class="btn btn-warning me-2">
+                        <i class="bi bi-pencil-fill"></i> Edit
+                    </a>
+                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">
+                            <i class="bi bi-trash-fill"></i> Dell
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+@endsection

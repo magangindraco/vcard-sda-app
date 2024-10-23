@@ -12,7 +12,8 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'position',
-        'phone',
+        'office',
+        'mobile',
         'email',
         'photo',
         'vcf_file',
