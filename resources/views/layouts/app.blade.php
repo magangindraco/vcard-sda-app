@@ -23,12 +23,14 @@
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f4f4f9;
-            overflow-x: hidden; /* iki gawe scrol sing horizontal e catatt */
+            overflow-x: hidden;
+            /* iki gawe scrol sing horizontal e catatt */
         }
 
         /* Sidebar tak gawe model ndek kene, cubo cubo ae gawe belajar*/
         .sidebar {
-            background-color: rgba(139, 5, 0); /* Fungsi ne gawe efect transparan jare google, gawe RGBA */
+            background-color: rgba(139, 5, 0);
+            /* Fungsi ne gawe efect transparan jare google, gawe RGBA */
             color: #ffffff;
             height: 100vh;
             padding: 20px;
@@ -37,9 +39,11 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 220px; /* Ukuran e width */
+            width: 220px;
+            /* Ukuran e width */
             z-index: 1000;
-            border-right: 2px solid #DEB887; /* iki broder e */
+            border-right: 2px solid #DEB887;
+            /* iki broder e */
         }
 
         .sidebar.show {
@@ -49,29 +53,38 @@
         .sidebar a {
             color: #ffffff;
             text-decoration: none;
-            padding: 10px 15px; /* padding gawe jarak */
+            padding: 10px 15px;
+            /* padding gawe jarak */
             display: flex;
             align-items: center;
-            border-radius: 8px; /* gawe coner sing border ben apik */
-            margin-bottom: 10px; /* Decreased margin */
+            border-radius: 8px;
+            /* gawe coner sing border ben apik */
+            margin-bottom: 10px;
+            /* Decreased margin */
             transition: background-color 0.3s, transform 0.2s;
             font-weight: 450;
-            font-size: 1.0rem; /* deleh font size */
+            font-size: 1.0rem;
+            /* deleh font size */
         }
 
         .sidebar a:hover {
             background-color: #A52A2A;
-            transform: scale(1.05); /* Slightly ukuran e hover */
+            transform: scale(1.05);
+            /* Slightly ukuran e hover */
         }
 
         .sidebar i {
-            font-size: 1.5rem; /* kene tak deleh icon size */
-            margin-right: 10px; /* Aspace gawe jarak tect eben masuk */
-            transition: color 0.3s; /* Smooth color transition */
+            font-size: 1.5rem;
+            /* kene tak deleh icon size */
+            margin-right: 10px;
+            /* Aspace gawe jarak tect eben masuk */
+            transition: color 0.3s;
+            /* Smooth color transition */
         }
 
         .sidebar a:hover i {
-            color: #D3D3D3; /* hoper gawe effect nek arep di pejet */
+            color: #D3D3D3;
+            /* hoper gawe effect nek arep di pejet */
         }
 
         .navbar-toggler {
@@ -87,11 +100,13 @@
             }
 
             .main-content {
-                margin-left: 220px; /* Adjust space for the sidebar */
+                margin-left: 220px;
+                /* Adjust space for the sidebar */
             }
 
             .navbar-toggler {
-                display: none; /* Hide the toggle button on larger screens */
+                display: none;
+                /* Hide the toggle button on larger screens */
             }
         }
 
@@ -100,8 +115,10 @@
             transition: margin-left 0.3s ease;
             padding: 20px;
             background-color: #ffffff;
-            min-height: 100vh; /* Ensure it takes full height */
-            margin-left: 0; /* Reset margin */
+            min-height: 100vh;
+            /* Ensure it takes full height */
+            margin-left: 0;
+            /* Reset margin */
         }
 
         /* button model e*/
@@ -137,6 +154,7 @@
 
                 <!-- Sidebar Menu -->
                 <div>
+
                     <a href="{{ route('employees.create') }}" class="d-flex align-items-center">
                         <i class="bi bi-person-plus-fill"></i>
                         Tambah Kartu Nama
@@ -150,29 +168,54 @@
                         Informasi SDA Store
                     </a>
                     <hr class="text-white">
-                    <a href="http://127.0.0.1:8000/#contact" class="d-flex align-items-center">
-                        <i class="bi bi-house-door"></i>
-                        Beranda
-                    </a>
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="bi bi-gear-fill"></i>
-                        Pengaturan
-                    </a>
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="bi bi-chat-dots"></i>
-                        Pesan
-                    </a>
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="bi bi-person-circle"></i>
-                        Profil
-                    </a>
-                    <a href="http://127.0.0.1:8000" class="d-flex align-items-center">
+                    {{-- <a href="http://127.0.0.1:8000/#contact" class="d-flex align-items-center">
+                            <i class="bi bi-house-door"></i>
+                            Beranda
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-gear-fill"></i>
+                            Pengaturan
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-chat-dots"></i>
+                            Pesan
+                        </a>
+                        <a href="#" class="d-flex align-items-center">
+                            <i class="bi bi-person-circle"></i>
+                            Profil
+                        </a>
+                   
+                        <a href="{{ route('employees.index') }}" class="d-flex align-items-center">
+                            <i class="bi bi-card-list"></i>
+                            Daftar Kartu Nama
+                        </a> --}}
+
+                    {{-- form logout lama --}}
+                    {{-- <form action="{{ route('logout') }}" method="POST" class="d-flex align-items-center">
+                        @csrf
+                        <button type="submit" class="btn btn-danger d-flex align-items-center">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </button>
+                    </form> --}}
+                    <!-- Hidden form for logout -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
+                    <!-- Styled as a link but triggers logout -->
+                    <a href="" class="d-flex align-items-center"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-box-arrow-right"></i>
                         Logout
                     </a>
+
                 </div>
             </div>
             <!-- End Sidebar -->
+
+
+
 
             <!-- Main Content -->
             <div class="col-12 col-lg main-content" id="mainContent">
@@ -199,12 +242,12 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('toggleSidebar').addEventListener('click', function () {
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('show');
         });
 
-        document.getElementById('closeSidebar').addEventListener('click', function () {
+        document.getElementById('closeSidebar').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.remove('show');
         });

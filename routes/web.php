@@ -1,88 +1,69 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\BusinessCardController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+
+
+
+
+
+// // Form login
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+
+// // Form register
+// Route::get('/register', [RegisterController::class, 'index']);
+// Route::post('/register', [RegisterController::class, 'store']);
+
+// // Logout
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Hanya bisa diakses oleh tamu (guest)
+Route::middleware('guest')->group(function() {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/register', [RegisterController::class, 'showRegisterForm']);
+    Route::post('/register', [RegisterController::class, 'register']);
+});
+
+// Logout bisa diakses ketika pengguna sudah login
+Route::middleware('auth')->post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+
+// Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
+Route::get('/', [LoginController::class,  'showLoginForm'])->name('login');
+
+
 
 
 
 
 // Route untuk menampilkan halaman bisnis
-
-Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
-
-
+Route::get('/v/administrator', [EmployeeController::class, 'index'])->name('employees.index')->middleware('auth');
 
 // Route untuk menampilkan form tambah kartu nama
-Route::get('/v/create', [EmployeeController::class, 'create'])->name('employees.create');
+Route::get('/v/member/create', [EmployeeController::class, 'create'])->name('employees.create')->middleware('auth');
 
 
 // Route untuk menyimpan kartu nama yang baru dibuat
-Route::post('/v', [EmployeeController::class, 'store'])->name('employees.store');
+Route::post('/v/administrator', [EmployeeController::class, 'store'])->name('employees.store')->middleware('auth');
 
 // Route untuk menampilkan detail bisnis berdasarkan nama
 Route::get('/v/{name}', [EmployeeController::class, 'show'])->name('employees.show');
 
 // Route untuk mengedit kartu bisnis
-Route::get('/v/edit/{name}', [EmployeeController::class, 'edit'])->name('employees.edit');
+Route::get('/v/member/edit/{name}', [EmployeeController::class, 'edit'])->name('employees.edit')->middleware('auth');
 
 // Route untuk mengupdate kartu bisnis
-Route::put('/v/update/{name}', [EmployeeController::class, 'update'])->name('employees.update');
+Route::put('/v/member/update/{name}', [EmployeeController::class, 'update'])->name('employees.update')->middleware('auth');
 
 // Route untuk menghapus kartu bisnis
-Route::delete('/v/{name}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+Route::delete('/v/{name}', [EmployeeController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
 
 // Tambahkan rute ini di routes/web.php
-Route::get('employees/{Employee}/vcard', [EmployeeController::class, 'downloadVCard'])->name('employees.download-vcard');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('/', function () {
-//     return redirect()->route('employees.index');
-// });
-
-// // download .vcf
-// Route::get('employee/{id}', [EmployeeController::class, 'show'])->name('employees.show');
-
-// Route::resource('employees', EmployeeController::class);
-// Route::get('v/{username}', [EmployeeController::class, 'show'])->name('vcard.show');
-
-// Route::get('admin/employees/create', [EmployeeController::class, 'create'])->name('admin.employees.create');
-// Route::post('admin/employees', [EmployeeController::class, 'store'])->name('admin.employees.store');
-
-// Route::get('employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit'); // Menampilkan form edit karyawan
-// Route::put('employees/{id}', [EmployeeController::class, 'update'])->name('employees.update'); // Memperbarui data karyawan
-// Route::delete('employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // Menghapus karyawan
-
-// Route::get('/vcard-templates', [EmployeeController::class, 'vCardTemplates'])->name('vcard.templates');
-
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// Route::get('/employees/{id}/download', [EmployeeController::class, 'downloadVCard'])->name('employees.downloadVCard');
-
-// Route::get('business-cards/{businessCard}/vcard', [BusinessCardController::class, 'downloadVCard'])->name('business-cards.download-vcard');
+Route::get('employees/{employee}/vcard', [EmployeeController::class, 'downloadVCard'])->name('employees.download-vcard')->middleware('auth');

@@ -19,36 +19,42 @@
 
                 <!-- Form gawe nglebokne jeneng -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-person-circle"></i>
                     <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" id="name" placeholder="Enter employee's name" required>
                 </div>
 
                 <!-- Form Input Position -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-person-workspace"></i>
                     <label for="position" class="form-label">Position</label>
                     <input type="text" name="position" class="form-control" id="position" placeholder="Enter employee's position" required>
                 </div>
 
                 <!-- Form Input office -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-building"></i>
                     <label for="office" class="form-label">office</label>
                     <input type="text" name="office" class="form-control" id="office" placeholder="Enter employee's office number" required>
                 </div>
 
                 <!-- Form Input mobile -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-telephone-fill"></i>
                     <label for="mobile" class="form-label">mobile</label>
                     <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter employee's mobile number" required>
                 </div>
 
                 <!-- Form Input Email -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-envelope-fill"></i>
                     <label for="email" class="form-label">Email</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter employee's email" required>
                 </div>
 
                 <!-- Form Input Photo -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-file-earmark-image"></i>
                     <label for="photo" class="form-label">Photo</label>
                     <input type="file" name="photo" class="form-control" id="photo" accept="image/*">
                     <small class="text-muted d-block mt-2">Upload a profile picture (optional).</small>
@@ -56,6 +62,7 @@
 
                 <!-- Form Input VCF File -->
                 <div class="form-group mb-3">
+                    <i class="bi bi-journal-medical"></i>
                     <label for="vcf_file" class="form-label">VCF File</label>
                     <input type="file" name="vcf_file" class="form-control" id="vcf_file" accept=".vcf">
                     <small class="text-muted d-block mt-2">Upload a vCard file (optional).</small>

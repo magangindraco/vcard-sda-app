@@ -1,9 +1,18 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome-free-6.5.1-web/css/all.min.css">
+	<link rel="stylesheet" href="/fonts/HelveticaNeue/HelveticaNeue.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-        <style>
-		* {
+    <style>
+
+    * {
 			outline: solid 1px green;
 			outline: solid 1px transparent;
 		}
@@ -56,121 +65,115 @@
 			color: #842c2d;
 		}
 	</style>
+</head>
+<body>
+    <header>
+    <div class="container-fluid d-flex flex-column row-gap-4 pt-5 bg-primary text-white">
+        <div>
+            <img src="{{ asset('images/sdastore.png') }}" class="w-50 h-auto" alt="SDA">
+        </div>
+        <div>
+            <div class="img-wrapper ratio ratio-1x1 bg-light rounded-circle mx-auto overflow-hidden position-relative"
+                style="width: 45%;">
+                <img src="{{ asset('storage/photos/' . $employee->photo) }}" class="img-fluid w-100" alt="">
+            </div>
+        </div>
 
-    <body>
+        <div>
+            <h5 class="text-capitalize fs-3">{{ $employee->name }}</h5>
+            <p class="lh-sm">
+                PT. SDA GLOBAL<br>{{ $employee->position }}
+            </p>
+        </div>
+        <div class="btn-group w-100">
+            <a href="https://beta.tokosda.com/" target="_blank"
+                class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-start-0 lh-sm py-3">
+                <i class="fas fa-globe-asia fa-lg"></i>
+                <br>
+                <small class="fs-sm">WEBSITE</small>
+            </a>
+            <a href="{{ route('employees.download-vcard', $employee->id)}}" target="_blank"
+                class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-end-0 lh-sm py-3">
+                <i class="fas fa-user-circle fa-lg"></i>
+                <br>
+                <small class="fs-sm">SAVE CONTACT</small>
+            </a>
+        </div>
+    </div>
+</header>
 
-        <header>
-            <div class="container-fluid d-flex flex-column row-gap-4 pt-5 bg-primary text-white">
-                <div>
-                    <img src="img/logo.png" class="w-50 h-auto" alt="SDA">
-                </div>
-                <div>
-                    <div class="img-wrapper ratio ratio-1x1 bg-light rounded-circle mx-auto overflow-hidden position-relative"
-                        style="width: 45%;">
-                        <img src="{{ asset('storage/photos/' . $employee->photo) }}" class="img-fluid w-100" alt="">
+<main class="h-100">
+    <div class="container-fluid bg-white h-100 p-5">
+        <ul class="list-unstyled m-0 text-start d-grid row-gap-3">
+            <li>
+                <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+                    <div class="mt-2 opacity-50">
+                        <i class="fas fa-phone fa-lg"></i>
                     </div>
-                </div>
-
-                <div>
-                    <h5 class="text-capitalize fs-3">{{ $employee->name }}</h5>
-                    <p class="lh-sm">
-                        PT. SDA GLOBAL<br>{{ $employee->position }}
-                    </p>
-                </div>
-                <div class="btn-group w-100">
-                    <a href="https://beta.tokosda.com/" target="_blank"
-                        class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-start-0 lh-sm py-3">
+                    <div>
+                        <span class="fs-lg">{{ $employee->office }}</span>
+                        <br><small class="fs-sm opacity-50">Office</small>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+                    <div class="mt-2 opacity-50">
+                        <i class="fas fa-mobile fa-lg"></i>
+                    </div>
+                    <div>
+                        <span class="fs-lg">{{ $employee->mobile }}</span>
+                        <br><small class="fs-sm opacity-50">Mobile</small>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+                    <div class="mt-2 opacity-50">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </div>
+                    <div>
+                        <span class="fs-lg">{{ $employee->email }}</span>
+                        <br><small class="fs-sm opacity-50">Email</small>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+                    <div class="mt-2 opacity-50">
+                        <i class="fas fa-location fa-lg"></i>
+                    </div>
+                    <div>
+                        <span class="fs-lg">
+                            Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes,
+                            Surabaya
+                            60186, Jawa Timur - Indonesia
+                        </span>
+                        <br><small class="fs-sm opacity-50">Show on map</small>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
+                    <div class="mt-2 opacity-50">
                         <i class="fas fa-globe-asia fa-lg"></i>
-                        <br>
-                        <small class="fs-sm">WEBSITE</small>
-                    </a>
-                    <a href="" target="_blank"
-                        class="btn btn-outline-light btn-lg rounded-0 border-bottom-0 border-end-0 lh-sm py-3">
-                        <i class="fas fa-user-circle fa-lg"></i>
-                        <br>
-                        <small class="fs-sm">SAVE CONTACT</small>
-                    </a>
-                </div>
-            </div>
-        </header>
+                    </div>
+                    <div>
+                        <span class="fs-lg">www.sdaglobal.co.id</span>
+                        <br><small class="fs-sm opacity-50">Website</small>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</main>
 
-        <main class="h-100">
-            <div class="container-fluid bg-white h-100 p-5">
-                <ul class="list-unstyled m-0 text-start d-grid row-gap-3">
-                    <li>
-                        <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-                            <div class="mt-2 opacity-50">
-                                <i class="fas fa-phone fa-lg"></i>
-                            </div>
-                            <div>
-                                <span class="fs-lg">{{ $employee->office }}</span>
-                                <br><small class="fs-sm opacity-50">Office</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-                            <div class="mt-2 opacity-50">
-                                <i class="fas fa-mobile fa-lg"></i>
-                            </div>
-                            <div>
-                                <span class="fs-lg">{{ $employee->mobile }}</span>
-                                <br><small class="fs-sm opacity-50">Mobile</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-                            <div class="mt-2 opacity-50">
-                                <i class="fas fa-envelope fa-lg"></i>
-                            </div>
-                            <div>
-                                <span class="fs-lg">{{ $employee->email }}</span>
-                                <br><small class="fs-sm opacity-50">Email</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-                            <div class="mt-2 opacity-50">
-                                <i class="fas fa-location fa-lg"></i>
-                            </div>
-                            <div>
-                                <span class="fs-lg">
-                                    Komp. Margomulyo Indah I Blok A No. 7-8 Jl. Margomulyo Indah I, Balongsari - Tandes,
-                                    Surabaya
-                                    60186, Jawa Timur - Indonesia
-                                </span>
-                                <br><small class="fs-sm opacity-50">Show on map</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank" class="text-decoration-none d-flex align-baseline column-gap-3">
-                            <div class="mt-2 opacity-50">
-                                <i class="fas fa-globe-asia fa-lg"></i>
-                            </div>
-                            <div>
-                                <span class="fs-lg">www.sdaglobal.co.id</span>
-                                <br><small class="fs-sm opacity-50">Website</small>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </main>
-
-        <footer>
-            <div class="container-fluid bg-black text-white py-3">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>,
-                SDA All Rights Reserved.
-            </div>
-        </footer>
-
-    </body>
-
-    </html>
-@endsection
+<footer>
+    <div class="container-fluid bg-black text-white py-3">
+        &copy;
+        <script>document.write(new Date().getFullYear())</script>,
+        SDA All Rights Reserved.
+    </div>
+</footer>
+</body>
+</html>
